@@ -1,1 +1,24 @@
+using System;
+using System.IO;
+using System.Security.Principal;
+
+class Program
+{
+    static void Main()
+    {
+        // Get the username of the currently logged-in user
+        string username = WindowsIdentity.GetCurrent().Name;
+
+        // Get the user's desktop folder path
+        string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+        // Combine the desktop path and the filename
+        string filePath = Path.Combine(desktopPath, "username.txt");
+
+        // Write the username to the file
+        File.WriteAllText(filePath, username);
+
+        Console.WriteLine($"Username saved to {filePath}");
+    }
+}
 
